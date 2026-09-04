@@ -1,0 +1,24 @@
+# dependencies
+node_modules/
+
+# production
+dist/
+
+# local environment
+.env
+.env.*
+!.env.example
+
+# editor and OS files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# logs and QA artifacts
+*.log
+coverage/
+playwright-report/
+test-results/
+qa-artifacts/
