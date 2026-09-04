@@ -50,11 +50,7 @@ export function HomePage() {
         <div className="site-container">
           <Reveal>
             <div className="grid gap-10 lg:grid-cols-[0.65fr_1.35fr] lg:gap-24">
-              <div className="flex items-start gap-4">
-                <span className="mt-2 h-2 w-12 bg-habra-red" aria-hidden="true" />
-                <p className="text-sm font-bold text-habra-red">بكل بساطة</p>
-              </div>
-              <div>
+              <div className="lg:col-start-2">
                 <h2 className="section-title">{siteContent.introduction.title}</h2>
                 <div className="mt-6 max-w-3xl space-y-2 text-lg leading-9 text-neutral-300 sm:text-xl sm:leading-10">
                   {siteContent.introduction.body.map((paragraph) => (

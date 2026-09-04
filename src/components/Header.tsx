@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { navigation } from '../data/site'
+import { primaryNavigation } from '../data/site'
 import { Logo } from './Logo'
 
 export function Header() {
@@ -20,7 +20,7 @@ export function Header() {
         </Link>
 
         <nav aria-label="التنقل الرئيسي" className="hidden items-center gap-8 lg:absolute lg:left-1/2 lg:flex lg:-translate-x-1/2">
-          {navigation.map((item) => {
+          {primaryNavigation.map((item) => {
             const active = item.pagePath === location.pathname
             return (
               <Link
@@ -55,7 +55,7 @@ export function Header() {
         aria-hidden={!isOpen}
       >
         <nav aria-label="التنقل عبر الهاتف" className="site-container flex flex-col py-4">
-          {navigation.map((item) => {
+          {primaryNavigation.map((item) => {
             const active = item.pagePath === location.pathname
             return (
               <Link

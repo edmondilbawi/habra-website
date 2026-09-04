@@ -15,7 +15,6 @@ export function ContactSection() {
         <Reveal>
           <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
             <div>
-              <p className="mb-4 text-sm font-semibold tracking-[0.12em] text-habra-red">نحن هنا</p>
               <h2 className="section-title">تواصل معنا</h2>
               <p className="mt-5 max-w-md text-base leading-8 text-neutral-400">
                 اختر وسيلة التواصل المناسبة لك.

@@ -8,10 +8,14 @@ export const assets = {
   aboutInterior: '/assets/images/open-grill.jpg',
 } as const
 
-export const navigation: NavigationItem[] = [
+export const primaryNavigation: NavigationItem[] = [
   { label: 'الرئيسية', to: '/', pagePath: '/' },
   { label: 'القائمة', to: '/menu', pagePath: '/menu' },
   { label: 'من نحن', to: '/about', pagePath: '/about' },
+]
+
+export const footerNavigation: NavigationItem[] = [
+  ...primaryNavigation,
   { label: 'تواصل معنا', to: '/#contact', pagePath: '/#contact' },
 ]
 
@@ -24,20 +28,20 @@ export const siteContent = {
   introduction: {
     title: 'هبرة',
     body: [
-      'مائدة بسيطة تبدأ من نار الفحم وتنتهي بطعم يبقى في البال.',
-      'أطباق واضحة، تحضير متأنٍ، ومساحة تجمع من نحب.',
+      'نكهات مشوية بعناية، أطباق محضّرة لتُقدَّم كما يجب،',
+      'وتجربة نريدها أن تبقى في الذاكرة.',
     ],
   },
   restaurant: {
     eyebrow: 'على نار هادئة',
-    title: 'التفاصيل البسيطة تصنع الفرق.',
-    body: 'من الشواية إلى المائدة، نحافظ على بساطة الطبق ووضوح نكهته.',
+    title: 'التفاصيل تصنع الفرق.',
+    body: 'من الشواية إلى المائدة، نهتم بكل تفصيل في التحضير والتقديم والنكهة.',
   },
   about: {
     title: 'من نحن',
     lead: 'هبرة مطعم يضع الطعم في الواجهة.',
     body: [
-      'قائمة مباشرة، أطباق سخية، ومكان بسيط يجمع الناس حول مائدة واحدة.',
+      'قائمة مباشرة، أطباق سخية، ومكان يجمع الناس حول مائدة واحدة.',
       'نركّز على التحضير المتأنّي والتقديم الذي يترك للنكهة مساحتها.',
     ],
   },
@@ -53,7 +57,7 @@ export const contactConfig: {
     { id: 'phone', label: 'اتصل بنا', value: null, href: null },
     { id: 'whatsapp', label: 'واتساب', value: null, href: null },
     { id: 'instagram', label: 'إنستغرام', value: null, href: null },
-    { id: 'location', label: 'الموقع', value: null, href: null },
+    { id: 'location', label: 'العنوان', value: null, href: null },
   ],
   address: null,
   openingHours: null,
