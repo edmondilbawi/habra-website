@@ -14,7 +14,7 @@ export function SectionHeading({
   return (
     <div className={align === 'center' ? 'mx-auto max-w-2xl text-center' : 'max-w-2xl'}>
       {eyebrow ? (
-        <p className="mb-4 text-sm font-semibold tracking-[0.12em] text-habra-red">
+        <p className="eyebrow-label mb-4">
           {eyebrow}
         </p>
       ) : null}

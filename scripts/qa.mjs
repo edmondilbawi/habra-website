@@ -62,10 +62,25 @@ try {
     { name: '1920x1080', width: 1920, height: 1080 },
     { name: '1440x900', width: 1440, height: 900 },
     { name: '1366x768', width: 1366, height: 768 },
+    { name: '1024x1366', width: 1024, height: 1366 },
+    { name: '768x1024', width: 768, height: 1024 },
     { name: '430x932', width: 430, height: 932 },
+    { name: '412x915', width: 412, height: 915 },
+    { name: '393x852', width: 393, height: 852 },
     { name: '390x844', width: 390, height: 844 },
+    { name: '375x812', width: 375, height: 812 },
     { name: '360x800', width: 360, height: 800 },
+    { name: '320x568', width: 320, height: 568 },
   ]
+  const visualReviewViewports = new Set([
+    '1920x1080',
+    '1440x900',
+    '1366x768',
+    '430x932',
+    '390x844',
+    '360x800',
+    '320x568',
+  ])
 
   for (const viewport of viewports) {
     const context = await browser.newContext({ viewport })
@@ -109,7 +124,7 @@ try {
         `${route.path} يتجاوز العرض عند ${viewport.name}: ${documentState.scrollWidth}/${documentState.viewportWidth}`,
       )
 
-      const shouldCapture = route.name === 'home' || viewport.name === '1440x900' || viewport.name === '390x844'
+      const shouldCapture = visualReviewViewports.has(viewport.name)
       if (shouldCapture) {
         await revealEntirePage(page, viewport.height)
         await page.screenshot({
@@ -139,6 +154,10 @@ try {
     (await interactionPage.getByRole('button', { name: 'إغلاق القائمة' }).getAttribute('aria-expanded')) === 'true',
     'قائمة الهاتف لا تفتح عبر لوحة المفاتيح',
   )
+  await interactionPage.waitForTimeout(300)
+  await interactionPage.screenshot({
+    path: `${artifactDirectory}/mobile-navigation-390x844.png`,
+  })
   await interactionPage.getByRole('navigation', { name: 'التنقل عبر الهاتف' }).getByRole('link', { name: 'القائمة' }).click()
   await interactionPage.waitForURL('**/habra-website/#/menu')
   await interactionPage.getByRole('heading', { level: 1, name: 'القائمة' }).waitFor()

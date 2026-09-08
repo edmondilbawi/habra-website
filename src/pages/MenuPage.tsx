@@ -1,14 +1,14 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { Reveal } from '../components/Reveal'
 import { menuCategories } from '../data/menu'
 import type { MenuItem } from '../types/content'
 
 function PreparedItems({ items, nested = false }: { items: MenuItem[]; nested?: boolean }) {
   return (
-    <div className="mt-4 grid gap-x-8 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="mt-3 grid gap-x-8 sm:mt-4 sm:grid-cols-2 lg:grid-cols-3">
       {items.map((item) => (
-        <article key={item.id} className="prepared-menu-item min-w-0 border-t border-white/10 py-5">
-          <div className="mb-3 h-0.5 w-7 bg-habra-red" aria-hidden="true" />
+        <article key={item.id} className="prepared-menu-item min-w-0 border-t border-white/10 py-4 sm:py-5">
+          <div className="mb-2.5 h-0.5 w-7 bg-habra-red sm:mb-3" aria-hidden="true" />
           {nested ? (
             <h4 className="text-lg font-bold leading-8 text-white sm:text-xl">{item.name}</h4>
           ) : (
@@ -24,34 +24,41 @@ function PreparedItems({ items, nested = false }: { items: MenuItem[]; nested?: 
 }
 
 export function MenuPage() {
+  const location = useLocation()
+
   return (
     <>
-      <section className="border-b border-white/10 py-10 sm:py-14 lg:py-16">
+      <section className="border-b border-white/10 py-8 sm:py-14 lg:py-16">
         <div className="site-container">
           <h1 className="page-title">القائمة</h1>
         </div>
       </section>
 
       <nav aria-label="أقسام القائمة" className="sticky top-20 z-30 border-b border-white/10 bg-habra-black/95 backdrop-blur-sm sm:top-24">
-        <div className="site-container no-scrollbar flex flex-wrap gap-x-6 gap-y-3 py-5 sm:flex-nowrap sm:gap-8 sm:overflow-x-auto">
-          {menuCategories.map((category) => (
-            <Link
-              key={category.id}
-              to={{ pathname: '/menu', hash: `#${category.id}` }}
-              className="category-link focus-ring"
-            >
-              {category.name}
-            </Link>
-          ))}
+        <div className="site-container no-scrollbar grid grid-cols-2 gap-x-5 gap-y-1 py-3 sm:flex sm:flex-nowrap sm:gap-8 sm:overflow-x-auto sm:py-5">
+          {menuCategories.map((category, categoryIndex) => {
+            const active = location.hash === `#${category.id}` || (!location.hash && categoryIndex === 0)
+
+            return (
+              <Link
+                key={category.id}
+                to={{ pathname: '/menu', hash: `#${category.id}` }}
+                className={`category-link focus-ring ${active ? 'is-active' : ''}`}
+                aria-current={active ? 'location' : undefined}
+              >
+                {category.name}
+              </Link>
+            )
+          })}
         </div>
       </nav>
 
-      <div className="site-container py-12 sm:py-16 lg:py-20">
+      <div className="site-container py-10 sm:py-16 lg:py-20">
         {menuCategories.map((category, categoryIndex) => (
           <section
             key={category.id}
             id={category.id}
-            className={`scroll-mt-52 sm:scroll-mt-44 ${categoryIndex > 0 ? 'mt-16 border-t border-white/10 pt-14 sm:mt-20 sm:pt-16' : ''}`}
+            className={`scroll-mt-52 sm:scroll-mt-44 ${categoryIndex > 0 ? 'mt-14 border-t border-white/10 pt-12 sm:mt-20 sm:pt-16' : ''}`}
             aria-labelledby={`${category.id}-title`}
           >
             <Reveal>
@@ -64,7 +71,7 @@ export function MenuPage() {
             </Reveal>
 
             {category.subcategories ? (
-              <div className="mt-8 space-y-8 sm:mt-10 sm:space-y-10">
+              <div className="mt-7 space-y-7 sm:mt-10 sm:space-y-10">
                 {category.subcategories.map((subcategory) => (
                   <Reveal key={subcategory.id}>
                     <section aria-labelledby={`${subcategory.id}-title`}>
@@ -81,10 +88,10 @@ export function MenuPage() {
               </div>
             ) : category.presentation === 'fresh-meat' ? (
               <Reveal className="mt-8 sm:mt-10">
-                <div className="border border-white/10 bg-neutral-950 px-6 py-1 sm:px-10 lg:px-12">
+                <div className="border border-white/10 bg-neutral-950 px-5 py-1 sm:px-10 lg:px-12">
                   <div className="grid gap-x-12 sm:grid-cols-2 lg:grid-cols-3">
                     {category.items?.map((item) => (
-                      <div key={item.id} className="fresh-meat-item flex min-w-0 items-center gap-4 border-t border-white/10 py-4">
+                      <div key={item.id} className="fresh-meat-item flex min-w-0 items-center gap-4 border-t border-white/10 py-3.5 sm:py-4">
                         <span className="h-2 w-2 shrink-0 bg-habra-red" aria-hidden="true" />
                         <p className="font-semibold leading-7 text-white">{item.name}</p>
                       </div>

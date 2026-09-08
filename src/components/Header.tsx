@@ -54,14 +54,14 @@ export function Header() {
         className={`mobile-nav lg:hidden ${isOpen ? 'is-open' : ''}`}
         aria-hidden={!isOpen}
       >
-        <nav aria-label="التنقل عبر الهاتف" className="site-container flex flex-col py-4">
+        <nav aria-label="التنقل عبر الهاتف" className="site-container flex flex-col py-3 sm:py-4">
           {primaryNavigation.map((item) => {
             const active = item.pagePath === location.pathname
             return (
               <Link
                 key={item.label}
                 to={item.to}
-                className={`focus-ring border-b border-white/10 py-5 text-base font-semibold transition-colors last:border-b-0 hover:text-habra-red ${active ? 'text-habra-red' : 'text-white'}`}
+                className={`focus-ring border-b border-white/10 py-4 text-base font-semibold transition-colors last:border-b-0 hover:text-habra-red sm:py-5 ${active ? 'text-habra-red' : 'text-white'}`}
                 aria-current={active ? 'page' : undefined}
                 tabIndex={isOpen ? 0 : -1}
                 onClick={() => setIsOpen(false)}

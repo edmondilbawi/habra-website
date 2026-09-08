@@ -5,7 +5,7 @@ import { assets, siteContent } from '../data/site'
 export function AboutPage() {
   return (
     <>
-      <section className="relative isolate flex min-h-[58svh] items-end overflow-hidden border-b border-white/10">
+      <section className="relative isolate flex min-h-[52svh] items-end overflow-hidden border-b border-white/10 sm:min-h-[58svh]">
         <img
           className="absolute inset-0 -z-20 h-full w-full object-cover"
           src={assets.aboutInterior}
@@ -16,22 +16,22 @@ export function AboutPage() {
           decoding="async"
         />
         <div className="absolute inset-0 -z-10 bg-black/60" />
-        <div className="site-container w-full py-16 sm:py-24">
-          <p className="mb-4 text-sm font-semibold tracking-[0.12em] text-habra-red">هبرة</p>
+        <div className="site-container w-full py-12 sm:py-24">
+          <p className="eyebrow-label mb-4">هبرة</p>
           <h1 className="page-title">{siteContent.about.title}</h1>
         </div>
       </section>
 
-      <section className="py-24 sm:py-32">
+      <section className="py-16 sm:py-24 lg:py-32">
         <div className="site-container">
           <Reveal>
-            <div className="grid gap-10 lg:grid-cols-[0.7fr_1.3fr] lg:gap-24">
-              <p className="text-sm font-bold text-habra-red">طعم في الواجهة</p>
+            <div className="grid gap-8 lg:grid-cols-[0.7fr_1.3fr] lg:gap-24">
+              <p className="eyebrow-label">طعم في الواجهة</p>
               <div className="max-w-3xl">
-                <h2 className="text-3xl font-black leading-relaxed text-white sm:text-5xl">
+                <h2 className="editorial-title">
                   {siteContent.about.lead}
                 </h2>
-                <div className="mt-8 space-y-4 text-base leading-9 text-neutral-300 sm:text-lg">
+                <div className="mt-6 space-y-4 text-base leading-9 text-neutral-300 sm:mt-8 sm:text-lg">
                   {siteContent.about.body.map((paragraph) => (
                     <p key={paragraph}>{paragraph}</p>
                   ))}
