@@ -56,7 +56,7 @@ try {
   const routes = [
     { path: '', name: 'home', title: 'هبرة | الرئيسية' },
     { path: '#/menu', name: 'menu', title: 'القائمة | هبرة' },
-    { path: '#/about', name: 'about', title: 'من نحن | هبرة' },
+    { path: '#/contact', name: 'contact', title: 'تواصل معنا | هبرة' },
   ]
   const viewports = [
     { name: '1920x1080', width: 1920, height: 1080 },
@@ -170,6 +170,32 @@ try {
   await interactionPage.getByRole('navigation', { name: 'أقسام القائمة' }).getByRole('link', { name: 'لحوم الغنم الطازجة' }).click()
   check(new URL(interactionPage.url()).hash === '#/menu#fresh-lamb', 'تنقل أقسام القائمة لا يحدّث الرابط')
   check((await interactionPage.locator('#fresh-lamb .fresh-meat-item').count()) === 17, 'قسم لحوم الغنم الطازجة لا يحتوي على ١٧ صنفاً')
+
+  await interactionPage.getByRole('button', { name: 'فتح القائمة' }).click()
+  await interactionPage.getByRole('navigation', { name: 'التنقل عبر الهاتف' }).getByRole('link', { name: 'تواصل معنا' }).click()
+  await interactionPage.waitForURL('**/habra-website/#/contact')
+  await interactionPage.getByRole('heading', { level: 1, name: 'تواصل معنا' }).waitFor()
+  check(new URL(interactionPage.url()).hash === '#/contact', 'رابط التواصل في تنقل الهاتف لا يعمل')
+  check((await interactionPage.getByRole('heading', { level: 1, name: 'من نحن' }).count()) === 0, 'عنوان صفحة من نحن القديمة ما زال ظاهراً')
+  check((await interactionPage.locator('.contact-method').count()) === 4, 'صفحة التواصل لا تعرض وسائل التواصل الأربع')
+  check((await interactionPage.locator('.contact-method svg[aria-hidden="true"]').count()) === 4, 'أيقونات صفحة التواصل الأربع غير موجودة')
+  check((await interactionPage.locator('a.contact-method').count()) === 0, 'صفحة التواصل تحتوي روابط غير معتمدة')
+  check((await interactionPage.locator('a[href="#/about"]').count()) === 0, 'يوجد رابط متبقٍ لصفحة من نحن المحذوفة')
+
+  const expectedNavigation = ['الرئيسية', 'القائمة', 'تواصل معنا']
+  const desktopNavigation = await interactionPage.locator('header nav[aria-label="التنقل الرئيسي"] a').allTextContents()
+  const mobileNavigation = await interactionPage.locator('header nav[aria-label="التنقل عبر الهاتف"] a').allTextContents()
+  const footerNavigation = await interactionPage.locator('footer nav a').allTextContents()
+  check(JSON.stringify(desktopNavigation) === JSON.stringify(expectedNavigation), 'عناصر التنقل الرئيسي ليست الرئيسية والقائمة وتواصل معنا')
+  check(JSON.stringify(mobileNavigation) === JSON.stringify(expectedNavigation), 'عناصر تنقل الهاتف ليست الرئيسية والقائمة وتواصل معنا')
+  check(JSON.stringify(footerNavigation) === JSON.stringify(expectedNavigation), 'عناصر تنقل التذييل ليست الرئيسية والقائمة وتواصل معنا')
+
+  await interactionPage.goto(rootUrl, { waitUntil: 'networkidle' })
+  const homepageContactLink = interactionPage.locator('main a[href="#/contact"]', { hasText: 'تواصل معنا' })
+  check((await homepageContactLink.count()) === 1, 'رابط قسم التفاصيل لا يشير إلى صفحة التواصل')
+  await homepageContactLink.click()
+  await interactionPage.waitForURL('**/habra-website/#/contact')
+  check(new URL(interactionPage.url()).hash === '#/contact', 'رابط التواصل في الصفحة الرئيسية لا يعمل')
 
   await interactionPage.goto(`${rootUrl}#/#contact`, { waitUntil: 'networkidle' })
   await interactionPage.waitForTimeout(500)

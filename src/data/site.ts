@@ -7,13 +7,13 @@ export const assets = {
   logoSource: `${assetBase}assets/brand/habra-logo-source.pdf`,
   hero: `${assetBase}assets/images/hero-grill.jpg`,
   restaurantInterior: `${assetBase}assets/images/restaurant-interior.jpg`,
-  aboutInterior: `${assetBase}assets/images/open-grill.jpg`,
+  contactHero: `${assetBase}assets/images/open-grill.jpg`,
 } as const
 
 export const primaryNavigation: NavigationItem[] = [
   { label: 'الرئيسية', to: '/', pagePath: '/' },
   { label: 'القائمة', to: '/menu', pagePath: '/menu' },
-  { label: 'من نحن', to: '/about', pagePath: '/about' },
+  { label: 'تواصل معنا', to: '/contact', pagePath: '/contact' },
 ]
 
 export const siteContent = {
@@ -34,13 +34,9 @@ export const siteContent = {
     title: 'التفاصيل تصنع الفرق.',
     body: 'من الشواية إلى المائدة، نهتم بكل تفصيل في التحضير والتقديم والنكهة.',
   },
-  about: {
-    title: 'من نحن',
-    lead: 'هبرة مطعم يضع الطعم في الواجهة.',
-    body: [
-      'قائمة مباشرة، أطباق سخية، ومكان يجمع الناس حول مائدة واحدة.',
-      'نركّز على التحضير المتأنّي والتقديم الذي يترك للنكهة مساحتها.',
-    ],
+  contact: {
+    title: 'تواصل معنا',
+    description: 'اختر وسيلة التواصل المناسبة لك.',
   },
 } as const
 

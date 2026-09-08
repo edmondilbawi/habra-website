@@ -27,6 +27,6 @@ Contact entries intentionally have `null` values and links until HABRA provides 
 
 - `/` — Home
 - `/menu` — Menu
-- `/about` — About
+- `/contact` — Contact
 
 The app uses browser-history routing. `public/_redirects` and `vercel.json` provide SPA rewrites for compatible static hosts.

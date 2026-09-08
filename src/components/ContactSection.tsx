@@ -1,4 +1,4 @@
-import { contactConfig } from '../data/site'
+import { contactConfig, siteContent } from '../data/site'
 import type { ContactMethod } from '../types/content'
 import { Reveal } from './Reveal'
 
@@ -74,9 +74,9 @@ export function ContactSection() {
         <Reveal>
           <div className="grid gap-8 sm:gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
             <div>
-              <h2 className="section-title">تواصل معنا</h2>
+              <h2 className="section-title">{siteContent.contact.title}</h2>
               <p className="mt-5 max-w-md text-base leading-8 text-neutral-400">
-                اختر وسيلة التواصل المناسبة لك.
+                {siteContent.contact.description}
               </p>
             </div>
 

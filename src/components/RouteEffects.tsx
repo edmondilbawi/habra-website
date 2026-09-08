@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom'
 const titles: Record<string, string> = {
   '/': 'هبرة | الرئيسية',
   '/menu': 'القائمة | هبرة',
-  '/about': 'من نحن | هبرة',
+  '/contact': 'تواصل معنا | هبرة',
 }
 
 export function RouteEffects() {

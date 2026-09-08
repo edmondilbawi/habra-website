@@ -110,8 +110,8 @@ export function HomePage() {
                   title={siteContent.restaurant.title}
                   description={siteContent.restaurant.body}
                 />
-                <Link to="/about" className="text-link focus-ring mt-8 w-fit">
-                  من نحن
+                <Link to="/contact" className="text-link focus-ring mt-8 w-fit">
+                  تواصل معنا
                   <span aria-hidden="true">←</span>
                 </Link>
               </div>
