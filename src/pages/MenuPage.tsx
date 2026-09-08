@@ -4,17 +4,17 @@ import type { MenuItem } from '../types/content'
 
 function PreparedItems({ items, nested = false }: { items: MenuItem[]; nested?: boolean }) {
   return (
-    <div className="mt-6 grid gap-x-10 sm:grid-cols-2 lg:grid-cols-3">
+    <div className="mt-4 grid gap-x-8 sm:grid-cols-2 lg:grid-cols-3">
       {items.map((item) => (
-        <article key={item.id} className="prepared-menu-item min-w-0 border-t border-white/10 py-7">
-          <div className="mb-4 h-0.5 w-7 bg-habra-red" aria-hidden="true" />
+        <article key={item.id} className="prepared-menu-item min-w-0 border-t border-white/10 py-5">
+          <div className="mb-3 h-0.5 w-7 bg-habra-red" aria-hidden="true" />
           {nested ? (
             <h4 className="text-lg font-bold leading-8 text-white sm:text-xl">{item.name}</h4>
           ) : (
             <h3 className="text-lg font-bold leading-8 text-white sm:text-xl">{item.name}</h3>
           )}
           {item.description ? (
-            <p className="mt-3 text-sm leading-8 text-neutral-400">{item.description}</p>
+            <p className="mt-2 text-sm leading-7 text-neutral-400">{item.description}</p>
           ) : null}
         </article>
       ))}
@@ -25,13 +25,9 @@ function PreparedItems({ items, nested = false }: { items: MenuItem[]; nested?: 
 export function MenuPage() {
   return (
     <>
-      <section className="border-b border-white/10 py-20 sm:py-28">
+      <section className="border-b border-white/10 py-10 sm:py-14 lg:py-16">
         <div className="site-container">
-          <p className="mb-4 text-sm font-semibold tracking-[0.12em] text-habra-red">اختر ما تحب</p>
           <h1 className="page-title">القائمة</h1>
-          <p className="mt-5 max-w-xl text-base leading-8 text-neutral-400 sm:text-lg">
-            نكهات مباشرة وأطباق مصنوعة لتصل إلى المائدة كما يجب.
-          </p>
         </div>
       </section>
 
@@ -45,12 +41,12 @@ export function MenuPage() {
         </div>
       </nav>
 
-      <div className="site-container py-20 sm:py-28">
+      <div className="site-container py-12 sm:py-16 lg:py-20">
         {menuCategories.map((category, categoryIndex) => (
           <section
             key={category.id}
             id={category.id}
-            className={`scroll-mt-44 ${categoryIndex > 0 ? 'mt-24 border-t border-white/10 pt-20 sm:mt-32 sm:pt-24' : ''}`}
+            className={`scroll-mt-52 sm:scroll-mt-44 ${categoryIndex > 0 ? 'mt-16 border-t border-white/10 pt-14 sm:mt-20 sm:pt-16' : ''}`}
             aria-labelledby={`${category.id}-title`}
           >
             <Reveal>
@@ -63,7 +59,7 @@ export function MenuPage() {
             </Reveal>
 
             {category.subcategories ? (
-              <div className="mt-12 space-y-14 sm:mt-16 sm:space-y-20">
+              <div className="mt-8 space-y-8 sm:mt-10 sm:space-y-10">
                 {category.subcategories.map((subcategory) => (
                   <Reveal key={subcategory.id}>
                     <section aria-labelledby={`${subcategory.id}-title`}>
@@ -79,11 +75,11 @@ export function MenuPage() {
                 ))}
               </div>
             ) : category.presentation === 'fresh-meat' ? (
-              <Reveal className="mt-12 sm:mt-16">
-                <div className="border border-white/10 bg-neutral-950 px-6 py-2 sm:px-10 lg:px-12">
+              <Reveal className="mt-8 sm:mt-10">
+                <div className="border border-white/10 bg-neutral-950 px-6 py-1 sm:px-10 lg:px-12">
                   <div className="grid gap-x-12 sm:grid-cols-2 lg:grid-cols-3">
                     {category.items?.map((item) => (
-                      <div key={item.id} className="fresh-meat-item flex min-w-0 items-center gap-4 border-t border-white/10 py-5">
+                      <div key={item.id} className="fresh-meat-item flex min-w-0 items-center gap-4 border-t border-white/10 py-4">
                         <span className="h-2 w-2 shrink-0 bg-habra-red" aria-hidden="true" />
                         <p className="font-semibold leading-7 text-white">{item.name}</p>
                       </div>
@@ -92,7 +88,7 @@ export function MenuPage() {
                 </div>
               </Reveal>
             ) : (
-              <Reveal className="mt-6 sm:mt-10">
+              <Reveal className="mt-2 sm:mt-4">
                 <PreparedItems items={category.items ?? []} />
               </Reveal>
             )}

@@ -33,20 +33,17 @@ export function HomePage() {
             <p className="mt-5 max-w-lg text-base leading-8 text-neutral-200 sm:text-lg">
               {siteContent.hero.description}
             </p>
-            <div className="mt-9 flex flex-col items-stretch gap-3 min-[420px]:flex-row min-[420px]:items-center">
+            <div className="mt-9 flex">
               <Link to="/menu" className="button-primary focus-ring">
                 استعرض القائمة
                 <span aria-hidden="true">←</span>
-              </Link>
-              <Link to="/#contact" className="button-secondary focus-ring">
-                تواصل معنا
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="py-24 sm:py-32">
+      <section className="py-14 sm:py-20 lg:py-24">
         <div className="site-container">
           <Reveal>
             <div className="grid gap-10 lg:grid-cols-[0.65fr_1.35fr] lg:gap-24">
@@ -63,18 +60,18 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="border-y border-white/10 bg-neutral-950 py-24 sm:py-32">
+      <section className="border-y border-white/10 bg-neutral-950 py-16 sm:py-20 lg:py-24">
         <div className="site-container">
           <Reveal>
             <div className="flex flex-col justify-between gap-8 sm:flex-row sm:items-end">
-              <SectionHeading title="من قائمتنا" description="اختيارات مباشرة لمحبي نكهة الفحم." />
+              <SectionHeading title="من قائمتنا" />
               <Link to="/menu" className="text-link focus-ring shrink-0">
                 استعرض القائمة
                 <span aria-hidden="true">←</span>
               </Link>
             </div>
           </Reveal>
-          <div className="mt-14 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-10 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-4">
             {featuredMenuItems.map((item) => (
               <Reveal key={item.id}>
                 <FoodCard item={item} />
@@ -84,11 +81,11 @@ export function HomePage() {
         </div>
       </section>
 
-      <section className="py-24 sm:py-32">
+      <section className="py-16 sm:py-20 lg:py-24">
         <div className="site-container">
           <Reveal>
             <div className="grid overflow-hidden border border-white/10 bg-neutral-950 lg:grid-cols-[1.3fr_0.7fr]">
-              <div className="min-h-[360px] overflow-hidden lg:min-h-[560px]">
+              <div className="min-h-[320px] overflow-hidden lg:min-h-[480px]">
                 <img
                   className="h-full w-full object-cover transition-transform duration-1000 hover:scale-[1.02]"
                   src={assets.restaurantInterior}
@@ -99,7 +96,7 @@ export function HomePage() {
                   decoding="async"
                 />
               </div>
-              <div className="flex flex-col justify-center p-8 sm:p-12 lg:p-14">
+              <div className="flex flex-col justify-center p-8 sm:p-10 lg:p-12">
                 <SectionHeading
                   eyebrow={siteContent.restaurant.eyebrow}
                   title={siteContent.restaurant.title}

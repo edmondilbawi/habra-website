@@ -10,10 +10,10 @@ const contactMarks = {
 
 export function ContactSection() {
   return (
-    <section id="contact" className="scroll-mt-24 border-t border-white/10 bg-neutral-950 py-24 sm:py-32">
+    <section id="contact" className="scroll-mt-24 border-t border-white/10 bg-neutral-950 py-16 sm:py-20 lg:py-24">
       <div className="site-container">
         <Reveal>
-          <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
             <div>
               <h2 className="section-title">تواصل معنا</h2>
               <p className="mt-5 max-w-md text-base leading-8 text-neutral-400">

@@ -14,11 +14,6 @@ export const primaryNavigation: NavigationItem[] = [
   { label: 'من نحن', to: '/about', pagePath: '/about' },
 ]
 
-export const footerNavigation: NavigationItem[] = [
-  ...primaryNavigation,
-  { label: 'تواصل معنا', to: '/#contact', pagePath: '/#contact' },
-]
-
 export const siteContent = {
   hero: {
     eyebrow: 'هبرة',

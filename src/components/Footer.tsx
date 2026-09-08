@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { footerNavigation } from '../data/site'
+import { primaryNavigation } from '../data/site'
 import { Logo } from './Logo'
 
 export function Footer() {
@@ -11,7 +11,7 @@ export function Footer() {
             <Logo className="h-20 w-20 bg-white object-contain" />
           </Link>
           <nav aria-label="روابط التذييل" className="flex flex-wrap gap-x-6 gap-y-4 text-sm text-neutral-400">
-            {footerNavigation.map((item) => (
+            {primaryNavigation.map((item) => (
               <Link key={item.label} to={item.to} className="focus-ring transition-colors hover:text-white">
                 {item.label}
               </Link>
