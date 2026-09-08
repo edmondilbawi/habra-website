@@ -1,5 +1,7 @@
 import type { MenuCategory, MenuItem } from '../types/content'
 
+const assetBase = import.meta.env.BASE_URL
+
 export const menuCategories: MenuCategory[] = [
   {
     id: 'lamb-sandwiches',
@@ -14,7 +16,7 @@ export const menuCategories: MenuCategory[] = [
             id: 'arayes-kofta',
             name: 'كفتة',
             description: 'كفتة غنم - كريم ثوم - بندورة - مخلل - تقدّم مع البطاطا المقلية',
-            image: '/assets/images/kofta-wrap.jpg',
+            image: `${assetBase}assets/images/kofta-wrap.jpg`,
             imageAlt: 'ساندويش كفتة مشوية مع البطاطا',
             featured: true,
           },
@@ -53,7 +55,7 @@ export const menuCategories: MenuCategory[] = [
             id: 'pepper-kebab',
             name: 'كباب فليفلة',
             description: 'كباب غنم مع الفليفلة - كريم ثوم - مخلل - تقدّم مع البطاطا المقلية',
-            image: '/assets/images/hero-grill.jpg',
+            image: `${assetBase}assets/images/hero-grill.jpg`,
             imageAlt: 'أسياخ لحوم متنوعة فوق الفحم',
             featured: true,
           },
@@ -67,7 +69,7 @@ export const menuCategories: MenuCategory[] = [
             id: 'classic-smoked-burger',
             name: 'برغر كلاسيك مدخّن',
             description: 'قرص لحم غنم - صلصة كلاسيكية خاصة - خس - بندورة - مخلل - تقدّم مع البطاطا المقلية',
-            image: '/assets/images/grilled-burger.jpg',
+            image: `${assetBase}assets/images/grilled-burger.jpg`,
             imageAlt: 'برغر لحم مشوي مع البطاطا',
             featured: true,
           },
@@ -89,7 +91,7 @@ export const menuCategories: MenuCategory[] = [
         id: 'red-shish-tawook',
         name: 'شيش طاووق أحمر',
         description: 'شيش طاووق أحمر - كريم ثوم - مخلل - تقدّم مع البطاطا المقلية',
-        image: '/assets/images/mixed-grill.jpg',
+        image: `${assetBase}assets/images/mixed-grill.jpg`,
         imageAlt: 'طبق مشاوي متنوعة مع قطع دجاج',
         featured: true,
       },

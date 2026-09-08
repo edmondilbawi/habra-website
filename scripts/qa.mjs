@@ -2,7 +2,7 @@ import { spawn } from 'node:child_process'
 import { mkdir } from 'node:fs/promises'
 import { chromium } from 'playwright-core'
 
-const rootUrl = 'http://127.0.0.1:4173'
+const rootUrl = 'http://127.0.0.1:4173/habra-website/'
 const artifactDirectory = 'qa-artifacts'
 const chromePath = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
 const failures = []
@@ -54,9 +54,9 @@ try {
   browser = await chromium.launch({ executablePath: chromePath, headless: true })
 
   const routes = [
-    { path: '/', title: 'هبرة | الرئيسية' },
-    { path: '/menu', title: 'القائمة | هبرة' },
-    { path: '/about', title: 'من نحن | هبرة' },
+    { path: '', name: 'home', title: 'هبرة | الرئيسية' },
+    { path: '#/menu', name: 'menu', title: 'القائمة | هبرة' },
+    { path: '#/about', name: 'about', title: 'من نحن | هبرة' },
   ]
   const viewports = [
     { name: '1920x1080', width: 1920, height: 1080 },
@@ -80,6 +80,7 @@ try {
     })
 
     for (const route of routes) {
+      await page.goto('about:blank')
       const response = await page.goto(`${rootUrl}${route.path}`, { waitUntil: 'networkidle' })
       check(response?.ok(), `${route.path} أعاد حالة ${response?.status()} عند ${viewport.name}`)
       check((await page.title()) === route.title, `عنوان ${route.path} غير صحيح عند ${viewport.name}`)
@@ -108,12 +109,11 @@ try {
         `${route.path} يتجاوز العرض عند ${viewport.name}: ${documentState.scrollWidth}/${documentState.viewportWidth}`,
       )
 
-      const shouldCapture = route.path === '/' || viewport.name === '1440x900' || viewport.name === '390x844'
+      const shouldCapture = route.name === 'home' || viewport.name === '1440x900' || viewport.name === '390x844'
       if (shouldCapture) {
         await revealEntirePage(page, viewport.height)
-        const pageName = route.path === '/' ? 'home' : route.path.slice(1)
         await page.screenshot({
-          path: `${artifactDirectory}/${pageName}-${viewport.name}.png`,
+          path: `${artifactDirectory}/${route.name}-${viewport.name}.png`,
           fullPage: true,
         })
       }
@@ -140,19 +140,19 @@ try {
     'قائمة الهاتف لا تفتح عبر لوحة المفاتيح',
   )
   await interactionPage.getByRole('navigation', { name: 'التنقل عبر الهاتف' }).getByRole('link', { name: 'القائمة' }).click()
-  await interactionPage.waitForURL('**/menu')
+  await interactionPage.waitForURL('**/habra-website/#/menu')
   await interactionPage.getByRole('heading', { level: 1, name: 'القائمة' }).waitFor()
-  check(new URL(interactionPage.url()).pathname === '/menu', 'رابط القائمة في تنقل الهاتف لا يعمل')
+  check(new URL(interactionPage.url()).hash === '#/menu', 'رابط القائمة في تنقل الهاتف لا يعمل')
   check((await interactionPage.getByRole('navigation', { name: 'أقسام القائمة' }).getByRole('link').count()) === 4, 'القائمة لا تحتوي على أربعة أقسام رئيسية')
   check((await interactionPage.locator('.menu-subcategory-title').count()) === 3, 'قسم ساندويش لحم غنم لا يحتوي على ثلاثة أقسام فرعية')
   check((await interactionPage.locator('.prepared-menu-item').count()) === 15, 'القائمة لا تحتوي على ١٥ طبقاً محضّراً')
   check((await interactionPage.getByLabel(/^السعر /).count()) === 0, 'تظهر أسعار غير معتمدة في القائمة')
 
   await interactionPage.getByRole('navigation', { name: 'أقسام القائمة' }).getByRole('link', { name: 'لحوم الغنم الطازجة' }).click()
-  check(new URL(interactionPage.url()).hash === '#fresh-lamb', 'تنقل أقسام القائمة لا يحدّث الرابط')
+  check(new URL(interactionPage.url()).hash === '#/menu#fresh-lamb', 'تنقل أقسام القائمة لا يحدّث الرابط')
   check((await interactionPage.locator('#fresh-lamb .fresh-meat-item').count()) === 17, 'قسم لحوم الغنم الطازجة لا يحتوي على ١٧ صنفاً')
 
-  await interactionPage.goto(`${rootUrl}/#contact`, { waitUntil: 'networkidle' })
+  await interactionPage.goto(`${rootUrl}#/#contact`, { waitUntil: 'networkidle' })
   await interactionPage.waitForTimeout(500)
   const featuredNames = await interactionPage.locator('.food-card h3').allTextContents()
   check(featuredNames.length === 4, 'الصفحة الرئيسية لا تعرض أربعة أطباق حقيقية مختارة')

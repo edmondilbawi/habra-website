@@ -1,11 +1,13 @@
 import type { ContactMethod, NavigationItem } from '../types/content'
 
+const assetBase = import.meta.env.BASE_URL
+
 export const assets = {
-  logo: '/assets/brand/habra-logo.png',
-  logoSource: '/assets/brand/habra-logo-source.pdf',
-  hero: '/assets/images/hero-grill.jpg',
-  restaurantInterior: '/assets/images/restaurant-interior.jpg',
-  aboutInterior: '/assets/images/open-grill.jpg',
+  logo: `${assetBase}assets/brand/habra-logo.png`,
+  logoSource: `${assetBase}assets/brand/habra-logo-source.pdf`,
+  hero: `${assetBase}assets/images/hero-grill.jpg`,
+  restaurantInterior: `${assetBase}assets/images/restaurant-interior.jpg`,
+  aboutInterior: `${assetBase}assets/images/open-grill.jpg`,
 } as const
 
 export const primaryNavigation: NavigationItem[] = [

@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { Reveal } from '../components/Reveal'
 import { menuCategories } from '../data/menu'
 import type { MenuItem } from '../types/content'
@@ -34,9 +35,13 @@ export function MenuPage() {
       <nav aria-label="أقسام القائمة" className="sticky top-20 z-30 border-b border-white/10 bg-habra-black/95 backdrop-blur-sm sm:top-24">
         <div className="site-container no-scrollbar flex flex-wrap gap-x-6 gap-y-3 py-5 sm:flex-nowrap sm:gap-8 sm:overflow-x-auto">
           {menuCategories.map((category) => (
-            <a key={category.id} href={`#${category.id}`} className="category-link focus-ring">
+            <Link
+              key={category.id}
+              to={{ pathname: '/menu', hash: `#${category.id}` }}
+              className="category-link focus-ring"
+            >
               {category.name}
-            </a>
+            </Link>
           ))}
         </div>
       </nav>
