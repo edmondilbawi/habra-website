@@ -14,15 +14,23 @@ export type ContactMethod = {
 export type MenuCategory = {
   id: string
   name: string
+  subcategories?: MenuSubcategory[]
+  items?: MenuItem[]
+  presentation?: 'prepared' | 'fresh-meat'
+}
+
+export type MenuSubcategory = {
+  id: string
+  name: string
+  items: MenuItem[]
 }
 
 export type MenuItem = {
   id: string
-  categoryId: MenuCategory['id']
   name: string
-  description: string
-  price: string
-  image: string
-  imageAlt: string
-  featured: boolean
+  description?: string
+  price?: string | null
+  image?: string
+  imageAlt?: string
+  featured?: boolean
 }
